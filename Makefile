@@ -36,8 +36,8 @@ deps: init
 
 # 编译源代码
 compile: deps
-	@echo "Compiling source code..."
-	@javac -d $(OUT_DIR) -sourcepath $(SRC_DIR) -cp $(LIB_DIR)/$(BSON_JAR) $(SRC_DIR)/com/kafkatool/external/BsonDecorator.java
+	@echo "Compiling source code with Java 11 compatibility..."
+	@javac --release 11 -d $(OUT_DIR) -sourcepath $(SRC_DIR) -cp $(LIB_DIR)/$(BSON_JAR) $(SRC_DIR)/com/kafkatool/external/BsonDecorator.java
 	@echo "Compilation complete."
 
 # 打包为JAR文件
