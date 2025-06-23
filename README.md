@@ -1,82 +1,29 @@
 # BSON Decoder Plugin for Offset Explorer (Kafka Tool)
 
-这个插件允许Offset Explorer (Kafka Tool) 解析和显示BSON格式的Kafka消息。
+This plugin enables Offset Explorer (Kafka Tool) to parse and display Kafka messages in BSON format.
 
-## 功能
+## Features
 
-- 将BSON二进制消息解析为可读的JSON格式
-- 支持格式化输出，便于阅读
-- 提供错误处理和调试信息
+- Parse BSON binary messages into readable JSON format.
+- Support formatted output for easy reading.
+- Provide error handling and debugging information.
 
-## 安装步骤
+## Installation and Usage
 
-### 使用Makefile（推荐）
+### Prebuilt JAR
 
-项目包含一个Makefile，可以方便地编译、打包和安装插件：
+1. Download the prebuilt JAR file from the [Releases](URL_ADDRESS1. Download the prebuilt JAR file from the [Releases](https://github.com/yourusername/offset-explorer-bson-plugin/releases) page.
+2. Place the JAR file in the `plugins` directory of Offset Explorer.
+3. Restart Offset Explorer.
+4. Change the content type of the topic to `BSON`.
 
-1. 编译和打包插件：
-   ```
-   make
-   ```
+### Manual Installation
 
-2. 安装插件到Offset Explorer：
+If you do not want to use Makefile, you can manually execute the following steps:
+
+1. Compile and install the plugin:
    ```
    make install
    ```
-
-3. 重启Offset Explorer
-
-### 手动安装
-
-如果您不想使用Makefile，也可以手动执行以下步骤：
-
-1. 编译插件：
-   ```
-   chmod +x compile.sh
-   ./compile.sh
-   ```
-
-2. 打包插件：
-   ```
-   chmod +x buildJar.sh
-   ./buildJar.sh
-   ```
-
-3. 将生成的`bson-decoder.jar`文件复制到Offset Explorer安装目录下的`plugins`文件夹中：
-   ```
-   cp bson-decoder.jar /Applications/Offset\ Explorer\ 3.app/Contents/Resources/app/plugins/
-   ```
-
-4. 重启Offset Explorer
-
-## 使用方法
-
-1. 启动Offset Explorer
-2. 导航到包含BSON格式消息的Kafka主题
-3. 在"Content Type"下拉菜单中选择"BSON Decoder"
-4. 点击"Update"按钮
-5. 消息将以格式化的JSON形式显示
-
-## Makefile 命令
-
-项目的Makefile提供了以下命令：
-
-- `make` 或 `make all` - 编译和打包插件
-- `make compile` - 仅编译源代码
-- `make package` - 将编译后的代码打包为JAR文件
-- `make install` - 安装插件到Offset Explorer
-- `make clean` - 清理生成的文件
-- `make distclean` - 完全清理（包括依赖）
-- `make help` - 显示帮助信息
-
-## 依赖项
-
-- MongoDB BSON库 (4.9.1)
-
-## 故障排除
-
-如果插件无法正确解析消息，它将显示错误信息和消息的前几个字节的十六进制表示，以帮助调试。
-
-## 开发
-
-如果您想修改或扩展这个插件，主要的实现代码在 `src/com/offsetexplorer/external/BsonDecorator.java` 文件中。
+2. Restart Offset Explorer
+3. Change the content type of the topic to `BSON`.
