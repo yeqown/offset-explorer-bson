@@ -79,4 +79,4 @@
 
 ## 开发
 
-如果您想修改或扩展这个插件，主要的实现代码在 `src/com/kafkatool/external/BsonDecorator.java` 文件中。
+如果您想修改或扩展这个插件，主要的实现代码在 `src/com/offsetexplorer/external/BsonDecorator.java` 文件中。

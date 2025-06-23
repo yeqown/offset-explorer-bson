@@ -1,4 +1,4 @@
-package com.kafkatool.external;
+package com.offsetexplorer.external;
 
 import java.util.Map;
 

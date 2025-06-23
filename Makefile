@@ -14,6 +14,11 @@ BSON_VERSION = 4.9.1
 BSON_JAR = bson-$(BSON_VERSION).jar
 BSON_URL = https://repo1.maven.org/maven2/org/mongodb/bson/$(BSON_VERSION)/$(BSON_JAR)
 
+# MongoDB Java驱动版本
+MONGODB_DRIVER_VERSION = 4.11.0
+MONGODB_DRIVER_JAR = mongodb-driver-core-$(MONGODB_DRIVER_VERSION).jar
+MONGODB_URL = https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-core/$(MONGODB_DRIVER_VERSION)/$(MONGODB_DRIVER_JAR)
+
 # 默认目标
 all: compile package
 
@@ -34,10 +39,17 @@ deps: init
 		echo "MongoDB BSON library already exists."; \
 	fi
 
+	@if [ ! -f $(LIB_DIR)/$(MONGODB_DRIVER_JAR) ]; then \
+		echo "Downloading MongoDB Java driver..."; \
+		curl -L -o $(LIB_DIR)/$(MONGODB_DRIVER_JAR) $(MONGODB_URL); \
+	else \
+		echo "MongoDB Java driver already exists."; \
+	fi
+
 # 编译源代码
 compile: deps
 	@echo "Compiling source code with Java 11 compatibility..."
-	@javac --release 11 -d $(OUT_DIR) -sourcepath $(SRC_DIR) -cp $(LIB_DIR)/$(BSON_JAR) $(SRC_DIR)/com/kafkatool/external/BsonDecorator.java
+	javac -source 11 -target 11 -cp "$(SRC_DIR):$(LIB_DIR)/*" -d $(OUT_DIR) $(shell find $(SRC_DIR) -name "*.java")
 	@echo "Compilation complete."
 
 # 打包为JAR文件
